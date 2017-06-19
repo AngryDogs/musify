@@ -1,4 +1,7 @@
 {
+  "name": "musify-server",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "express": "^4.15.3"
   }
