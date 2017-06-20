@@ -2,7 +2,7 @@ import React from 'react';
 
 const LandingPage = () => (
   <div>
-    I am landing pagessadasdas
+    I am landing page
   </div>
 );
 
