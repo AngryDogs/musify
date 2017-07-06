@@ -1,3 +1,85 @@
-html {
-  background-color: red;
+@import "~bootstrap/dist/css/bootstrap.min.css";
+// $fa-font-path: "~font-awesome/fonts";
+// @import "~font-awesome/scss/font-awesome.scss";
+
+$primary-color: #2498f3;
+$secondary-color: #fff;
+
+.navbar {
+  background-color: $primary-color;
 }
+
+.nav-input {
+  background-color: $primary-color;
+  color: $secondary-color !important;
+  width: 350px !important;
+  height: 40px;
+  border-radius: 25px;
+  border-color: $secondary-color;
+
+  &:focus {
+    background-color: $primary-color;
+  }
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
+
+.btn {
+  color: $secondary-color;
+  border-color: $secondary-color;
+  border-radius: 25px;
+  text-transform:uppercase;
+  font-size: 10px;
+  height: 40px;
+
+  &:hover {
+    color: $primary-color;
+    border-color: $secondary-color;
+    background-color: $secondary-color;
+  }
+}
+
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('::-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-ms-input-placeholder') {
+    @content;
+  }
+}
+
+@include placeholder {
+  color: $secondary-color !important;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+
+//
+//
+// @font-face {
+//   font-family: 'LibreFranklin';
+//   src: url('./resources/fonts/LibreFranklin-Regular.ttf'); /* IE9 Compat Modes */
+//   src: url('./resources/fonts/LibreFranklin-Regular.ttf') format('embedded-opentype'), /* IE6-IE8 */
+//        url('./resources/fonts/LibreFranklin-Regular.ttf') format('woff2'), /* Super Modern Browsers */
+//        url('./resources/fonts/LibreFranklin-Regular.ttf') format('woff'), /* Pretty Modern Browsers */
+//        url('./resources/fonts/LibreFranklin-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+//        url('./resources/fonts/LibreFranklin-Regular.ttf') format('svg'); /* Legacy iOS */
+// }
