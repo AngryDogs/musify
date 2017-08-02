@@ -5,7 +5,7 @@ const credientials = require('./credientials');
 const app = express();
 const PORT = 8000;
 const youTubeService = new YouTube();
-const VIDEOS_COUNTER = 10;
+const VIDEOS_COUNTER = 15;
 
 youTubeService.setKey(credientials.apiKey);
 

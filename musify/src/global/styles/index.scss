@@ -5,6 +5,8 @@
 $primary-color: #2498f3;
 $secondary-color: #fff;
 
+$font-secondary-color: #8e8e8e;
+
 .navbar {
   background-color: $primary-color;
 }
@@ -71,6 +73,44 @@ $secondary-color: #fff;
   text-transform: uppercase;
 }
 
+.loader-body {
+  position: relative;
+  height: 100%;
+}
+
+#loader-container {
+  width: 320px;
+  margin: 0 auto;
+  margin-top: 20%;
+
+  canvas {
+    margin: 0 auto;
+  }
+}
+
+.search-element-component:hover {
+  hr {
+    color: $primary-color;
+    border-color: $primary-color;
+    background-color: $primary-color;
+  }
+}
+
+.search-element-row {
+  margin-top: 25px;
+  height: 190px;
+  padding: 5px;
+  cursor: pointer;
+
+  p {
+    color: $font-secondary-color;
+  }
+}
+
+.search-image {
+  height: 180px;
+  width: 320px;
+}
 
 //
 //

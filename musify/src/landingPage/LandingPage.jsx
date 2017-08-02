@@ -6,7 +6,6 @@ const LandingPage = () => (
   <div>
     <Navbar />
     <SearchResults />
-    I am landing page
   </div>
 );
 
