@@ -9,7 +9,6 @@ const SearchResults = (props) => (
     <div className="container">
       { !props.search.isLoading && props.search.searchResults.hasOwnProperty("items") &&
         props.search.searchResults.items.map((element, index) => {
-          console.log(element);
           return <SearchResultElement elementData={ {...element}} key={index} />
         })
       }

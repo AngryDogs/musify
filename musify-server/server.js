@@ -1,6 +1,8 @@
 const express = require('express');
 const YouTube = require('./youtube');
 const credientials = require('./credientials');
+const youtubeStream = require('youtube-audio-stream')
+const compression = require('compression')
 
 const app = express();
 const PORT = 8000;
@@ -8,6 +10,8 @@ const youTubeService = new YouTube();
 const VIDEOS_COUNTER = 15;
 
 youTubeService.setKey(credientials.apiKey);
+
+app.use(compression());
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -31,6 +35,15 @@ app.get('/search', (req, res) => {
       res.send({ body: result});
     }
   });
+});
+
+app.get('/music', (req, res) => {
+  const url = 'https://www.youtube.com/embed/' + req.query.videoId;
+  try {
+    youtubeStream(url).pipe(res);
+  } catch (exception) {
+    res.status(500).send(exception)
+  }
 });
 
 app.listen(PORT, () => {

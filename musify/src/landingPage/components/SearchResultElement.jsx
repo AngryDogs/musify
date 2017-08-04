@@ -1,12 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { startStreaming } from '../../api/actions/player';
 
-const onVideoClick = (id) => {
-  console.log(id);
+const onVideoClick = (id, dispatch) => {
+  dispatch(startStreaming(id));
 }
 
-const SearchResultElement = ({elementData}) => (
+const SearchResultElement = ({elementData, dispatch}) => (
   <div className="search-element-component">
-    <div className="search-element-row row" onClick={event => onVideoClick(elementData.id.videoId)}>
+    <div className="search-element-row row" onClick={event => onVideoClick(elementData.id.videoId, dispatch)}>
       <div className="col-4">
         <img className="search-image"
           alt={ elementData.snippet.thumbnails.high.url }
@@ -25,4 +27,4 @@ const SearchResultElement = ({elementData}) => (
   </div>
 )
 
-export default SearchResultElement;
+export default connect(state => state)(SearchResultElement);

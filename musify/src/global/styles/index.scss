@@ -75,7 +75,6 @@ $font-secondary-color: #8e8e8e;
 
 .loader-body {
   position: relative;
-  height: 100%;
 }
 
 #loader-container {
@@ -110,6 +109,18 @@ $font-secondary-color: #8e8e8e;
 .search-image {
   height: 180px;
   width: 320px;
+}
+
+.footer {
+  height: 75px;
+  background-color: $primary-color;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-body {
+  margin-top: 2.5%;
 }
 
 //
