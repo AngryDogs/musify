@@ -1,19 +1,21 @@
 import React from 'react';
 import Loader from '../../global/components/Loader';
 import { connect } from 'react-redux';
-import SearchResultElement from './SearchResultElement';
+import SearchResultItem from './SearchResultItem';
 
-const SearchResults = (props) => (
+const SearchResults = ({ isLoading, searchResults }) =>
   <div>
-    { props.search.isLoading && <Loader /> }
+    {isLoading && <Loader />}
     <div className="container">
-      { !props.search.isLoading && props.search.searchResults.hasOwnProperty("items") &&
-        props.search.searchResults.items.map((element, index) => {
-          return <SearchResultElement elementData={ {...element}} key={index} />
-        })
-      }
+      {!isLoading &&
+        searchResults.hasOwnProperty('items') &&
+        searchResults.items.map((data, index) => <SearchResultItem data={data} key={index} />)}
     </div>
-  </div>
-)
+  </div>;
 
-export default connect(state => state)(SearchResults);
+const mapStateToProps = state => ({
+  isLoading: state.search.isLoading,
+  searchResults: state.search.searchResults
+});
+
+export default connect(mapStateToProps)(SearchResults);
