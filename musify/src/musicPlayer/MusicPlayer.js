@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import PlayButton from './PlayButton';
-import { play, pause } from '../../api/actions/player';
+import PlayButton from './playButton';
+import { play, pause } from './actions';
 
-const Player = ({ isPlaying, play, pause, player }) =>
+const MusicPlayer = ({ isPlaying, play, pause, player }) =>
   <div className="footer navbar-fixed-bottom">
     <div className="container">
       <div className="footer-body">
@@ -31,4 +31,4 @@ const mapDispatchToProps = dispatch =>
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default connect(mapStateToProps, mapDispatchToProps)(MusicPlayer);

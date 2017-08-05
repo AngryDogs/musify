@@ -1,9 +1,4 @@
-import {
-  REQUEST_MUSIC_STREAM_ERROR,
-  REQUEST_MUSIC_STREAM,
-  PLAY,
-  PAUSE
-} from '../constants/constants';
+import { REQUEST_MUSIC_STREAM_ERROR, REQUEST_MUSIC_STREAM, PLAY, PAUSE, STOP } from './constants';
 
 const initialState = {
   streamAudio: null,
@@ -11,16 +6,16 @@ const initialState = {
   isPlaying: false
 };
 
-export default function player(state = initialState, response) {
-  switch (response.type) {
+export default function player(state = initialState, result) {
+  switch (result.type) {
     case REQUEST_MUSIC_STREAM:
-      state.streamAudio && state.streamAudio.pause();
-      return { ...state, streamAudio: new Audio(response.streamLocation) };
+      return { ...state, streamAudio: result.streamAudio };
     case REQUEST_MUSIC_STREAM_ERROR:
       return { ...state, streamError: 'Got error' };
     case PLAY:
       return { ...state, isPlaying: true };
     case PAUSE:
+    case STOP:
       return { ...state, isPlaying: false };
     default:
       return state;

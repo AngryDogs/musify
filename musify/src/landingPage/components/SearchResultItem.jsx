@@ -1,16 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startStreaming } from '../../api/actions/player';
+import { actions as musicPlayerActions } from '../../musicPlayer';
+import { bindActionCreators } from 'redux';
 
-const onVideoClick = (id, dispatch) => {
-  dispatch(startStreaming(id));
-};
-
-const SearchResultItem = ({ data, dispatch }) =>
+const SearchResultItem = ({ data, startStreaming }) =>
   <div className="search-element-component">
-    <div
-      className="search-element-row row"
-      onClick={event => onVideoClick(data.id.videoId, dispatch)}>
+    <div className="search-element-row row" onClick={() => startStreaming(data.id.videoId)}>
       <div className="col-4">
         <img
           className="search-image"
@@ -30,4 +25,12 @@ const SearchResultItem = ({ data, dispatch }) =>
     <hr />
   </div>;
 
-export default connect(state => state)(SearchResultItem);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      startStreaming: musicPlayerActions.startStreaming
+    },
+    dispatch
+  );
+
+export default connect(state => state, mapDispatchToProps)(SearchResultItem);
