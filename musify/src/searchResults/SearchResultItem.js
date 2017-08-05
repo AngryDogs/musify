@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 const SearchResultItem = ({ data, startStreaming }) =>
   <div className="search-element-component">
-    <div className="search-element-row row" onClick={() => startStreaming(data.id.videoId)}>
+    <div className="search-element-row row" onClick={() => startStreaming(data.id, data.contentDetails.duration)}>
       <div className="col-4">
         <img
           className="search-image"
@@ -18,7 +18,7 @@ const SearchResultItem = ({ data, startStreaming }) =>
           {data.snippet.title}
         </h4>
         <p>
-          {data.snippet.description}
+          {data.snippet.description.substring(0,250).trim()}...
         </p>
       </div>
     </div>

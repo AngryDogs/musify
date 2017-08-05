@@ -1,8 +1,15 @@
-import { REQUEST_MUSIC_STREAM, PLAY, PAUSE, STOP } from './constants';
+import moment from 'moment';
+import { REQUEST_MUSIC_STREAM, PLAY, PAUSE, STOP, AUDIO_CURRENT_TIME_UPDATE } from './constants';
 
 const withUrl = videoId => `http://localhost:8000/music?videoId=${videoId}`;
 
-export const startStreaming = videoId => {
+const addAudioTimeUpdateEventListener = (audio, dispatch) => {
+  dispatch({ type: AUDIO_CURRENT_TIME_UPDATE, currentTime: audio.currentTime})
+}
+
+export const startStreaming = (videoId, duration) => {
+
+  const durationInSeconds = moment.duration(duration).asSeconds();
   return (dispatch, getState) => {
     const { streamAudio } = getState().player;
     if (streamAudio) dispatch(pause());
@@ -14,7 +21,12 @@ export const startStreaming = videoId => {
     newStreamAudio.onended = () => dispatch(stop());
     newStreamAudio.onerror = () => dispatch(stop());
 
-    dispatch({ type: REQUEST_MUSIC_STREAM, streamAudio: newStreamAudio });
+    newStreamAudio.addEventListener("timeupdate", () => {
+      addAudioTimeUpdateEventListener(newStreamAudio, dispatch);
+    }, false);
+
+    dispatch({ type: REQUEST_MUSIC_STREAM, streamAudio: newStreamAudio,
+      duration: durationInSeconds });
   };
 };
 

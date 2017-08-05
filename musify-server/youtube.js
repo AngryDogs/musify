@@ -151,12 +151,11 @@ var YouTube = function() {
 
       self.addPart('snippet');
       self.addPart('contentDetails');
-      self.addPart('statistics');
-      self.addPart('status');
 
       self.addParam('part', self.getParts());
       self.addParam('id', id);
 
+      console.log(self.getUrl('videos'));
       self.request(self.getUrl('videos'), callback);
     }
   };

@@ -10,7 +10,7 @@ const SearchResults = ({ isLoading, searchResults }) =>
       {!isLoading &&
         searchResults.hasOwnProperty('items') &&
         searchResults.items
-          .filter(data => !data.id.kind.includes('channel')) // TODO: make sure we don't ask for channels for results
+          //.filter(data => !data.id.kind.includes('channel')) // TODO: make sure we don't ask for channels for results
           .map((data, index) => <SearchResultItem data={data} key={index} />)}
     </div>
   </div>;

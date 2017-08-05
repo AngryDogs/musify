@@ -9,3 +9,5 @@ export const REQUEST_MUSIC_STREAM_ERROR = withPrefix('REQUEST_MUSIC_STREAM_ERROR
 export const PLAY = withPrefix('PLAY');
 export const PAUSE = withPrefix('PAUSE');
 export const STOP = withPrefix('STOP');
+
+export const AUDIO_CURRENT_TIME_UPDATE = withPrefix('AUDIO_CURRENT_TIME_UPDATE');

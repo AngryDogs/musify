@@ -127,6 +127,26 @@ $font-secondary-color: #8e8e8e;
 
 .footer-body {
   margin-top: 2.5%;
+  float: left;
+  display: flex;
+}
+
+#timeline{
+	width: 600px;
+	height: 1px;
+	background: $secondary-color;
+	margin-top: 20px;
+	float: left;
+	border-radius: 15px;
+  margin-left: 15px;
+}
+
+#playhead{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	margin-top: -7px;
+	background: rgba(0, 255, 196, 1);
 }
 
 //
