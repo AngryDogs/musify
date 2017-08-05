@@ -13,3 +13,29 @@
     0 3px 6px rgba(5, 13, 20, 0.498039);
   transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
 }
+
+.rainbow-logo-text {
+  color: tomato;
+  font-family: floppywav;
+  text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green, 1px 1px 0 rgb(217, 31, 38),
+    2px 2px 0 rgb(226, 91, 14), 3px 3px 0 rgb(245, 221, 8), 4px 4px 0 rgb(5, 148, 68),
+    5px 5px 0 rgb(2, 135, 206), 6px 6px 0 rgb(4, 77, 145), 7px 7px 0 rgb(42, 21, 113);
+  -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -moz-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -o-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-transform: scaleX(1) scaleY(1) scaleZ(1);
+  transform: scaleX(1) scaleY(1) scaleZ(1);
+  -webkit-transform-origin: 50% 50% 0;
+  transform-origin: 50% 50% 0;
+}
+
+.rainbow-logo-text:hover {
+  text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green, -1px -1px 0 rgb(217, 31, 38),
+    -2px -2px 0 rgb(226, 91, 14), -3px -3px 0 rgb(245, 221, 8), -4px -4px 0 rgb(5, 148, 68),
+    -5px -5px 0 rgb(2, 135, 206), -6px -6px 0 rgb(4, 77, 145), -7px -7px 0 rgb(42, 21, 113);
+  -webkit-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -moz-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -o-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}

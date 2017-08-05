@@ -9,11 +9,15 @@ const onSubmit = (event, props) => {
   props.dispatch(searchVideos(event.target.search.value));
 };
 
+function getRandomLogo() {
+  return ['logo-text', 'rainbow-logo-text'][Math.floor(Math.random() * 2)];
+}
+
 const Navbar = props =>
   <div>
     <nav className="navbar">
       <form onSubmit={event => onSubmit(event, props)} className="form-inline">
-        <h1 className="pr-3 logo-text">MUSIFY</h1>
+        <h1 className={`pr-3 ${getRandomLogo()}`}>MUSIFY</h1>
         <input
           name="search"
           className="form-control nav-input mr-sm-2"
