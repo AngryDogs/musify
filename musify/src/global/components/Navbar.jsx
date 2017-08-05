@@ -13,9 +13,7 @@ const Navbar = props =>
   <div>
     <nav className="navbar">
       <form onSubmit={event => onSubmit(event, props)} className="form-inline">
-        <h1 className="pr-3 x3d-text" style={{ fontFamily: 'floppywav', color: 'white' }}>
-          MUSIFY
-        </h1>
+        <h1 className="pr-3 logo-text">MUSIFY</h1>
         <input
           name="search"
           className="form-control nav-input mr-sm-2"
