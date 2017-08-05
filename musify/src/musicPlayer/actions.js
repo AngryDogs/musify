@@ -4,10 +4,9 @@ const withUrl = videoId => `http://localhost:8000/music?videoId=${videoId}`;
 
 export const startStreaming = videoId => {
   return (dispatch, getState) => {
-    const { streamAudio, isPlaying } = getState().player;
-    if (streamAudio) {
-      dispatch(pause());
-    }
+    const { streamAudio } = getState().player;
+    if (streamAudio) dispatch(pause());
+
     const newStreamAudio = new Audio(withUrl(videoId));
     newStreamAudio.onpause = () => dispatch(pause());
     newStreamAudio.onplay = () => dispatch(play());
@@ -22,9 +21,9 @@ export const startStreaming = videoId => {
 export function play() {
   return (dispatch, getState) => {
     const { streamAudio, isPlaying } = getState().player;
-    if (streamAudio) {
+    if (streamAudio && !isPlaying) {
       streamAudio.play();
-      return !isPlaying && dispatch({ type: PLAY });
+      return dispatch({ type: PLAY });
     }
     return false;
   };
@@ -33,9 +32,9 @@ export function play() {
 export function pause() {
   return (dispatch, getState) => {
     const { streamAudio, isPlaying } = getState().player;
-    if (streamAudio) {
+    if (streamAudio && isPlaying) {
       streamAudio.pause();
-      return isPlaying && dispatch({ type: PAUSE });
+      return dispatch({ type: PAUSE });
     }
     return false;
   };
