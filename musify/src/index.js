@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './global/components/App';
+import App from './App';
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 
-import configureStore from './api/configureStore';
+import configureStore from './configureStore';
 
 import './index.css';
 
@@ -18,7 +18,7 @@ ReactDOM.render(
 );
 
 if (module.hot) {
-  module.hot.accept('./global/components/App', () => {
+  module.hot.accept('./App', () => {
     ReactDOM.render(
       <Provider store={store}>
         <App />

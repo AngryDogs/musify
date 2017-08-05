@@ -1,12 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { searchVideos } from '../../api/actions/search';
+import { actions as searchActions } from '../searchResults';
 import './navbar.css';
 
 const onSubmit = (event, props) => {
   event.preventDefault();
-  props.dispatch(searchVideos(event.target.search.value));
+  props.dispatch(searchActions.searchVideos(event.target.search.value));
 };
 
 function getRandomLogo() {

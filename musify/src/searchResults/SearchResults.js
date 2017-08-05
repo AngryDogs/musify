@@ -1,5 +1,5 @@
 import React from 'react';
-import Loader from '../../global/components/Loader';
+import Loader from '../common/loader';
 import { connect } from 'react-redux';
 import SearchResultItem from './SearchResultItem';
 
@@ -9,7 +9,9 @@ const SearchResults = ({ isLoading, searchResults }) =>
     <div className="container">
       {!isLoading &&
         searchResults.hasOwnProperty('items') &&
-        searchResults.items.map((data, index) => <SearchResultItem data={data} key={index} />)}
+        searchResults.items
+          .filter(data => !data.id.kind.includes('channel')) // TODO: make sure we don't ask for channels for results
+          .map((data, index) => <SearchResultItem data={data} key={index} />)}
     </div>
   </div>;
 

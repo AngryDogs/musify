@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actions as musicPlayerActions } from '../../musicPlayer';
+import { actions as musicPlayerActions } from '../musicPlayer';
 import { bindActionCreators } from 'redux';
 
 const SearchResultItem = ({ data, startStreaming }) =>
