@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import configureStore from './api/configureStore';
 
-import './global/styles/index.css';
+import './index.css';
 
 const store = configureStore();
 
@@ -23,9 +23,9 @@ if (module.hot) {
       <Provider store={store}>
         <App />
       </Provider>,
-      document.getElementById('root'),
-    )
-  })
+      document.getElementById('root')
+    );
+  });
 }
 
 registerServiceWorker();
