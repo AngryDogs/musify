@@ -1,30 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Menu, Icon } from 'antd';
+import { ProgressSlider, VolumeSlider } from 'react-media-slider';
+import moment from 'moment';
 
-import PlayButton from './playButton';
-import ProgressBar from './progressBar';
 import { play, pause } from './actions';
 
-const MusicPlayer = ({ isPlaying, play, pause, player, duration, currentTime, playPercentage }) =>
-  <div className="footer navbar-fixed-bottom">
-    <div className="container">
-      <div className="footer-body">
-        <PlayButton
-          isPlaying={isPlaying} //player && player.streamAudio && player.streamAudio.paused}
-          play={play}
-          pause={pause}
-        />
-      <ProgressBar playPercentage={playPercentage} />
-        {currentTime} - { duration }
-      </div>
-    </div>
-  </div>;
+const formatSecond = (seconds) => {
+  return moment.utc(seconds*1000).format('m:ss');
+}
+
+const MusicPlayer = ({ isPlaying, play, pause, player, duration, currentTime, playPercentage, audio }) =>
+    <Menu
+          mode="inline"
+          theme="dark"
+          className='music-player'
+          inlineCollapsed={false}>
+      <Menu.Item>
+        <Icon type="pie-chart" />
+        <span>Option 1</span>
+      </Menu.Item>
+      <Menu.Item>
+        <Icon type="pie-chart" />
+        <span>Option 1</span>
+      </Menu.Item>
+      <Menu.Item>
+        {formatSecond(currentTime)} - {formatSecond(duration)}
+      </Menu.Item>
+      <Menu.Item>
+          <ProgressSlider  />
+      </Menu.Item>
+    </Menu>
+    ;
 
 const mapStateToProps = state => (
   {
   isPlaying: state.player.isPlaying,
   player: state.player,
+  audio: state.player.streamAudio,
   duration: state.player.duration,
   currentTime: state.player.currentTime,
   playPercentage: 100 * (state.player.currentTime / state.player.duration),
