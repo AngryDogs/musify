@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Menu, Icon } from 'antd';
+import { Menu } from 'antd';
 import { ProgressSlider, VolumeSlider } from 'react-media-slider';
 import moment from 'moment';
-
-import { play, pause } from './actions';
 
 const formatSecond = (seconds) => {
   return moment.utc(seconds*1000).format('m:ss');
@@ -15,21 +13,13 @@ const MusicPlayer = ({ isPlaying, play, pause, player, duration, currentTime, pl
     <Menu
           mode="inline"
           theme="dark"
+          defaultSelectedKeys={['1']}
           className='music-player'
           inlineCollapsed={false}>
-      <Menu.Item>
-        <Icon type="pie-chart" />
-        <span>Option 1</span>
-      </Menu.Item>
-      <Menu.Item>
-        <Icon type="pie-chart" />
-        <span>Option 1</span>
-      </Menu.Item>
-      <Menu.Item>
-        {formatSecond(currentTime)} - {formatSecond(duration)}
-      </Menu.Item>
-      <Menu.Item>
-          <ProgressSlider  />
+      <Menu.Item key="1"
+        className="player-content">
+        <p>{audio && formatSecond(audio.currentTime) + '-' + formatSecond(duration)}</p>
+        <ProgressSlider media={audio} />
       </Menu.Item>
     </Menu>
     ;
@@ -47,8 +37,6 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      play,
-      pause
     },
     dispatch
   );

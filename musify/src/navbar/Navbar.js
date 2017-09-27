@@ -13,7 +13,7 @@ const onSubmit = (value, dispatch) => {
 const Navbar = props => {
   return (
     <div>
-      <Menu>
+      <Menu className="navbar">
         <Menu.Item key="search">
           <Input.Search placeholder="Please enter keyphrase"
             className="search-input"

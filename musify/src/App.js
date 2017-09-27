@@ -6,18 +6,18 @@ import SearchResults from './searchResults';
 import Navbar from './navbar';
 import MusicPlayer from './musicPlayer';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Sider, Content } = Layout;
 
 const App = () =>
   <Router>
     <Layout>
-      <Header>
-        <Navbar />
-      </Header>
+      <Sider>
+        <MusicPlayer />
+      </Sider>
       <Layout>
-        <Sider>
-          <MusicPlayer />
-        </Sider>
+        <Header className="navbar">
+          <Navbar />
+        </Header>
         <Content>
           <Route exact path="/" component={SearchResults} />
         </Content>

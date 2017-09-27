@@ -1,4 +1,4 @@
-import { REQUEST_MUSIC_STREAM_ERROR, REQUEST_MUSIC_STREAM, PLAY, PAUSE, STOP, AUDIO_CURRENT_TIME_UPDATE } from './constants';
+import { REQUEST_MUSIC_STREAM_ERROR, REQUEST_MUSIC_STREAM, AUDIO_CURRENT_TIME_UPDATE } from './constants';
 
 const initialState = {
   streamAudio: null,
@@ -17,11 +17,6 @@ export default function player(state = initialState, result) {
       return { ...state, streamError: 'Got error' };
     case AUDIO_CURRENT_TIME_UPDATE:
       return { ...state, currentTime: result.currentTime}
-    case PLAY:
-      return { ...state, isPlaying: true };
-    case PAUSE:
-    case STOP:
-      return { ...state, isPlaying: false };
     default:
       return state;
   }

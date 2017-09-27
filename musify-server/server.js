@@ -1,13 +1,18 @@
 const express = require('express');
 const YouTube = require('./youtube');
 const credientials = require('./credientials');
-const youtubeStream = require('youtube-audio-stream')
-const compression = require('compression')
+const compression = require('compression');
 
 const app = express();
 const PORT = 8000;
 const youTubeService = new YouTube();
 const VIDEOS_COUNTER = 15;
+
+const fs = require('fs');
+const ytdl = require('ytdl-core');
+const stream = require('youtube-audio-stream')
+
+const bitrate = 128;
 
 youTubeService.addParam('part', 'contentDetails');
 youTubeService.setKey(credientials.apiKey);
@@ -23,7 +28,15 @@ function getAllIdsToString(result) {
   return ids;
 }
 
-app.use(compression());
+function getRangeFirstPart(rangeString) {
+  return rangeString.replace(/bytes=/, "").split("-")[0];
+}
+
+
+
+const calculateContentLength = (duration) => {
+  return ((duration * bitrate) / 8) * 1000
+}
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -53,14 +66,13 @@ app.get('/search', (req, res) => {
 });
 
 app.get('/music', (req, res) => {
-  const url = 'https://www.youtube.com/embed/' + req.query.videoId;
+  const url = 'http://www.youtube.com/watch?v=' + req.query.videoId;
+  const client = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
   try {
-    res.writeHead(200, {
-      'Content-Type': 'audio/mpeg',
-    });
-    youtubeStream(url).pipe(res);
+    stream(url).pipe(res);
   } catch (exception) {
-    res.status(500).send(exception)
+    res.status(500).send(exception);
   }
 });
 

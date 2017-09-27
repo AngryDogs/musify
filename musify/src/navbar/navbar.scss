@@ -51,4 +51,17 @@
 
 .search-input {
   width: 250px !important;
+  float: right !important;
+  pointer-events: all !important;
+}
+
+.ant-menu-item-selected {
+  cursor: default !important;
+  background-color: #108ee9 !important;
+
+}
+
+.navbar {
+  background-color: #108ee9 !important;
+  pointer-events: none;
 }
